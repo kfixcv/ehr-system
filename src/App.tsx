@@ -298,12 +298,12 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f4f6f8] text-slate-800">
       {/* 1. Persistent Educational & Privacy Disclaimer Banner */}
-      <div className="bg-[#0b3948] text-white text-xs py-1.5 px-4 border-b border-teal-800 flex flex-wrap items-center justify-between gap-2 no-print">
+      <div className="bg-[#0b3948] text-white text-[10px] sm:text-xs py-1.5 px-3 sm:px-4 border-b border-teal-800 flex flex-wrap items-center justify-between gap-2 no-print">
         <div className="flex items-center gap-2 font-medium">
           <ShieldAlert className="w-4 h-4 text-amber-300 shrink-0" />
           <span>بيئة تجريبية - جميع بيانات المرضى افتراضية (نموذج تعليمي افتراضي، غير صالح للاستخدام السريري)</span>
         </div>
-        <div className="flex items-center gap-3 text-[11px] text-teal-100">
+        <div className="flex items-center gap-3 text-[10px] sm:text-[11px] text-teal-100">
           <span>EHR-FILE: {draftData.patient.mrn}</span>
           <span>|</span>
           <span>{draftData.patient.encounterId}</span>
@@ -312,46 +312,53 @@ export default function App() {
 
       {/* 2. Top Hospital Header */}
       <header className="bg-[#0f4c5c] text-white shadow-sm border-b border-teal-900 sticky top-0 z-30 no-print">
-        <div className="max-w-[1600px] mx-auto px-4 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex flex-col md:flex-row items-center justify-between gap-3">
           {/* Right side: 3-lines Hamburger Button + Hospital Icon & Name */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                if (window.innerWidth < 1024) {
-                  setMobileMenuOpen(!mobileMenuOpen);
-                } else {
-                  setSidebarOpen(!sidebarOpen);
-                }
-              }}
-              className="p-2 rounded bg-teal-900/60 hover:bg-teal-800 text-white border border-teal-700 transition focus:outline-none focus:ring-2 focus:ring-teal-400"
-              title="إظهار / إخفاء القائمة الجانبية"
-              aria-label="القائمة الرئيسية"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-
+          <div className="flex items-center justify-between w-full md:w-auto gap-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
-                <Building2 className="w-6 h-6 text-teal-200" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="font-bold text-base sm:text-lg leading-tight">
-                    مستشفى الرعاية الصحية الافتراضي
-                  </h1>
-                  <span className="hidden md:inline-block text-xs text-teal-200 font-normal">
-                    (Virtual Healthcare Hospital)
-                  </span>
+              <button
+                onClick={() => {
+                  if (window.innerWidth < 1024) {
+                    setMobileMenuOpen(!mobileMenuOpen);
+                  } else {
+                    setSidebarOpen(!sidebarOpen);
+                  }
+                }}
+                className="p-1.5 sm:p-2 rounded bg-teal-900/60 hover:bg-teal-800 text-white border border-teal-700 transition focus:outline-none focus:ring-2 focus:ring-teal-400"
+                title="إظهار / إخفاء القائمة الجانبية"
+                aria-label="القائمة الرئيسية"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                  <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-teal-200" />
                 </div>
-                <p className="text-xs text-teal-200">
-                  {draftData.patient.department} — نظام السجل الصحي الإلكتروني (EHR)
-                </p>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h1 className="font-bold text-xs sm:text-base md:text-lg leading-tight">
+                      مستشفى الرعاية الصحية الافتراضي
+                    </h1>
+                    <span className="hidden xl:inline-block text-xs text-teal-200 font-normal">
+                      (Virtual Healthcare Hospital)
+                    </span>
+                  </div>
+                  <p className="text-[10px] sm:text-xs text-teal-200 mt-0.5">
+                    {draftData.patient.department} — نظام السجل الصحي الإلكتروني (EHR)
+                  </p>
+                </div>
               </div>
             </div>
+
+            {/* DEMO Badge for Mobile */}
+            <span className="bg-amber-400 text-slate-950 font-bold text-[10px] sm:text-xs px-2 py-1 rounded md:hidden shrink-0">
+              DEMO
+            </span>
           </div>
 
           {/* Center: Quick Record Search */}
-          <div className="hidden md:block relative w-72 lg:w-80">
+          <div className="w-full md:w-72 lg:w-80 relative">
             <div className="relative">
               <Search className="w-4 h-4 text-teal-200 absolute right-3 top-2.5 pointer-events-none" />
               <input
@@ -359,7 +366,7 @@ export default function App() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="بحث في سجل المريض (تشخيص، رمز، خطة)..."
-                className="w-full bg-teal-950/70 text-white placeholder-teal-300/70 text-xs rounded border border-teal-700 pr-9 pl-7 py-2 focus:outline-none focus:border-teal-300"
+                className="w-full bg-teal-950/70 text-white placeholder-teal-300/70 text-xs rounded border border-teal-700 pr-9 pl-7 py-1.5 sm:py-2 focus:outline-none focus:border-teal-300"
               />
               {searchQuery && (
                 <button
@@ -401,7 +408,7 @@ export default function App() {
           </div>
 
           {/* Left side: Status Indicators & Save Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden md:flex items-center gap-2 sm:gap-3">
             {hasUnsavedChanges ? (
               <div className="flex items-center gap-1.5 bg-amber-500/20 border border-amber-400 text-amber-200 px-2.5 py-1 rounded text-xs font-semibold">
                 <AlertTriangle className="w-3.5 h-3.5" />
