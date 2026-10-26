@@ -28,7 +28,9 @@ import {
   Printer,
   ChevronLeft,
   Clock,
-  Lock
+  Lock,
+  Globe,
+  ExternalLink
 } from 'lucide-react';
 import {
   EHRData,
@@ -40,6 +42,8 @@ import {
 import { initialEHRData } from './initialData';
 
 const STORAGE_KEY = 'vhh_ehr_patient_00421_v1';
+
+type ExtendedSectionId = SectionId | 'partner';
 
 export default function App() {
   // Load state from LocalStorage or fallback to initialEHRData
@@ -55,7 +59,7 @@ export default function App() {
 
   // Working copy for editing before saving
   const [draftData, setDraftData] = useState<EHRData>(savedData);
-  const [activeSection, setActiveSection] = useState<SectionId>('summary');
+  const [activeSection, setActiveSection] = useState<ExtendedSectionId>('summary');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -119,7 +123,7 @@ export default function App() {
   };
 
   // Navigation items list
-  const navItems: { id: SectionId; label: string; enLabel: string; icon: React.ReactNode; badge?: string }[] = [
+  const navItems: { id: ExtendedSectionId; label: string; enLabel: string; icon: React.ReactNode; badge?: string }[] = [
     { id: 'dashboard', label: 'لوحة المريض', enLabel: 'Patient Dashboard', icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'summary', label: 'ملخص الملف الطبي', enLabel: 'Record Summary', icon: <FileText className="w-4 h-4" /> },
     { id: 'history', label: 'التاريخ المرضي', enLabel: 'Medical & Smoking History', icon: <ClipboardList className="w-4 h-4" /> },
@@ -132,6 +136,7 @@ export default function App() {
     { id: 'education', label: 'التثقيف الصحي', enLabel: 'Health Education', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'followup', label: 'المتابعة والزيارات', enLabel: 'Follow-up & Visits', icon: <Calendar className="w-4 h-4" /> },
     { id: 'notes', label: 'ملاحظات الطبيب', enLabel: 'Clinical Notes (SOAP)', icon: <FileEdit className="w-4 h-4" /> },
+    { id: 'partner', label: 'رحلة البيانات الصحية', enLabel: 'Heal Data Journey (Partner)', icon: <Globe className="w-4 h-4" />, badge: 'مشترك' },
   ];
 
   const currentNav = navItems.find((n) => n.id === activeSection) || navItems[1];
@@ -140,7 +145,7 @@ export default function App() {
   const searchResults = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return [];
-    const results: { section: SectionId; title: string; snippet: string }[] = [];
+    const results: { section: ExtendedSectionId; title: string; snippet: string }[] = [];
 
     if (
       draftData.patient.arName.toLowerCase().includes(q) ||
@@ -2058,6 +2063,51 @@ export default function App() {
                     <Save className="w-4 h-4" />
                     <span>حفظ مسودة الملاحظة السريرية</span>
                   </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SECTION 13: PARTNER PROJECT (HEAL DATA JOURNEY) */}
+          {activeSection === 'partner' && (
+            <div className="bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
+              <div className="bg-[#e8f1f5] border-b border-slate-300 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 className="font-bold text-sm text-[#0f4c5c] flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-[#0f4c5c]" />
+                    <span>15. رحلة البيانات الصحية — المشروع المشترك (Heal Data Journey - Partner Portal)</span>
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    منصة رديفة مشتركة في البيانات السريرية والتوعوية لمشروع المعلوماتية الصحية
+                  </p>
+                </div>
+
+                <a
+                  href="https://healdatajourey.lovable.app/mission"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded bg-[#0f4c5c] hover:bg-[#0b3948] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition"
+                >
+                  <span>فتح الموقع في نافذة مستقلة</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              <div className="p-4 space-y-3">
+                <div className="p-3 rounded bg-teal-50/70 border border-teal-200 text-xs text-slate-700 flex items-center justify-between gap-2">
+                  <span>
+                    <strong>تكامل البيانات المشتركة:</strong> يمكنكِ تصفح موقع زميلتكِ مباشرة من النافذة التفاعلية أدناه، أو فتحه في علامة تبويب كاملة عبر الزر العلوي.
+                  </span>
+                </div>
+
+                <div className="w-full h-[750px] rounded border border-slate-300 overflow-hidden bg-slate-100 shadow-inner">
+                  <iframe
+                    src="https://healdatajourey.lovable.app/mission"
+                    title="Heal Data Journey Partner Site"
+                    className="w-full h-full border-0"
+                    allow="fullscreen"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
