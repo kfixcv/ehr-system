@@ -1,0 +1,13 @@
+body {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  background-color: #f4f6f8;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: white !important;
+  }
+}
