@@ -592,6 +592,105 @@ export default function App() {
             </div>
           </div>
 
+          {/* 4.5. Project Credits & Partner Event Announcement Card */}
+          <section className="bg-gradient-to-l from-[#e8f1f5] via-white to-[#f0f7fa] border-2 border-[#0f4c5c]/30 rounded-lg shadow-sm overflow-hidden no-print">
+            {/* Top Bar: Official Project Rights */}
+            <div className="bg-[#0b3948] text-white px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-2 font-bold">
+                <CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0" />
+                <span>حقوق تطوير المشروع التفاعلي — تخصص المعلوماتية الصحية (جامعة القصيم)</span>
+              </div>
+              <span className="text-[11px] text-teal-200 font-medium">
+                مشروع مشترك متكامل (EHR & Heal Data Journey)
+              </span>
+            </div>
+
+            <div className="p-4 space-y-4">
+              {/* Developers Rights Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* Haneen's Credit Box */}
+                <div className="bg-white border border-slate-200 border-r-4 border-r-[#0f4c5c] rounded p-3 shadow-sm flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center shrink-0 text-[#0f4c5c] font-bold text-xs">
+                    EHR
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-500 font-semibold">
+                      تطوير وتصميم نظام السجل الصحي الإلكتروني (EHR):
+                    </div>
+                    <div className="text-sm font-bold text-[#0f4c5c] mt-0.5">
+                      حنين مصطفى ماضي (Haneen Mustafa Madhy)
+                    </div>
+                    <p className="text-[11px] text-slate-600 mt-1">
+                      بناء وبرمجة النظام السريري التفاعلي وتوثيق بيانات المرضى وخطط الرعاية.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Shomoukh's Credit Box */}
+                <div className="bg-white border border-slate-200 border-r-4 border-r-amber-500 rounded p-3 shadow-sm flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-amber-800 font-bold text-xs">
+                    HDJ
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-500 font-semibold">
+                      تطوير وتصميم فعالية ومنصة رحلة البيانات الصحية:
+                    </div>
+                    <div className="text-sm font-bold text-slate-900 mt-0.5">
+                      شموع الحربي (Shomoukh Alharbi)
+                    </div>
+                    <p className="text-[11px] text-slate-600 mt-1">
+                      إعداد وتصميم التحديات التفاعلية لمراحل رحلة البيانات الصحية والتوعوية.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Event Announcement & How to Enter */}
+              <div className="bg-teal-900/5 border border-teal-800/20 rounded-md p-3.5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-11 h-11 rounded-lg bg-[#0f4c5c] text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                    <Globe className="w-6 h-6 text-amber-300" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-bold text-[10px]">
+                        إعلان الفعالية التفاعلية
+                      </span>
+                      <h3 className="font-bold text-xs sm:text-sm text-[#0f4c5c]">
+                        فعالية رحلة البيانات الصحية (Heal Data Journey)
+                      </h3>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      ندعوكم لخوض تجربة تعليمية تفاعلية لاستكشاف مراحل رحلة البيانات الصحية وتحديات تحليل البيانات وقيم المخاطر السريرية.
+                    </p>
+                    <div className="text-[11px] text-slate-600 bg-white/80 px-2.5 py-1.5 rounded border border-slate-200 inline-block mt-1">
+                      <strong>طريقة الدخول للفعالية:</strong> اضغط على زر <strong>"الدخول السريع للفعالية"</strong> بالأسفل، أو اختر تبويب <strong>"رحلة البيانات الصحية"</strong> من القائمة الجانبية لتصفح المنصة مباشرة داخل السجل.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-end shrink-0">
+                  <button
+                    onClick={() => setActiveSection('partner')}
+                    className="px-3.5 py-2 rounded bg-[#0f4c5c] hover:bg-[#0b3948] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition cursor-pointer"
+                  >
+                    <Globe className="w-4 h-4 text-amber-300" />
+                    <span>الدخول السريع للفعالية داخل السجل</span>
+                  </button>
+                  <a
+                    href="https://healdatajourey.lovable.app/mission"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 rounded border border-[#0f4c5c] bg-white hover:bg-teal-50 text-[#0f4c5c] text-xs font-bold flex items-center gap-1.5 transition"
+                  >
+                    <span>فتح في نافذة مستقلة</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* 5. Compact Patient Identity Banner (Matching PDF Theme - No Avatar) */}
           <section className="bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
             <div className="bg-[#0f4c5c] text-white px-4 py-3 flex flex-wrap items-center justify-between gap-3">
@@ -2085,7 +2184,7 @@ export default function App() {
                     <span>15. رحلة البيانات الصحية — المشروع المشترك (Heal Data Journey - Partner Portal)</span>
                   </h3>
                   <p className="text-xs text-slate-600 mt-0.5">
-                    منصة رديفة مشتركة في البيانات السريرية والتوعوية لمشروع المعلوماتية الصحية
+                    إعداد وتطوير: شموع الحربي (Shomoukh Alharbi) — منصة رديفة مشتركة لمشروع المعلوماتية الصحية
                   </p>
                 </div>
 
@@ -2153,7 +2252,7 @@ export default function App() {
       <footer className="bg-white border-t border-slate-300 py-3 px-4 text-center text-xs text-slate-600 mt-auto">
         <div className="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div>
-            <strong>مستشفى الرعاية الصحية الافتراضي (Virtual Healthcare Hospital)</strong> — السجل الصحي الإلكتروني ({draftData.patient.mrn})
+            <strong>مستشفى الرعاية الصحية الافتراضي (Virtual Healthcare Hospital)</strong> — تطوير السجل: حنين مصطفى ماضي (Haneen Mustafa Madhy) | رحلة البيانات: شموع الحربي
           </div>
           <div>
             محاكاة تعليمية لمشروع التوعية بالمعلوماتية الصحية (الإقلاع عن التدخين والوقاية من المخدرات) — جميع البيانات افتراضية وغير صالحة للاستخدام السريري.
